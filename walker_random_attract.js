@@ -10,25 +10,27 @@ class Walker {
     this.size = 32;
   }
 
-  update() {
+  update(action, walker) {
     this.acc = p5.Vector.random2D();
 
     // other walkers 
     walker.map(w => {
       let diffVect = p5.Vector.sub(w.pos, this.pos);
 
-      let r = random(-1, 1);
+      if (action === "random") {
+        let r = random(-1, 1);
+        diffVect.setMag(abs(r));
 
-      diffVect.setMag(abs(r));
+        if (r > 0)
+          this.acc.sub(diffVect); // diverge
+        else
+          this.acc.add(diffVect); // converge
 
-      if (r > 0)
-        this.acc.sub(diffVect); // diverge
-      else
-        this.acc.add(diffVect); // converge
-      
-      // console.log(r)
-
-      // console.log(diffVect)
+      } else if (action === "diverge") {
+        this.acc.sub(diffVect);
+      } else if (action === "converge") {
+        this.acc.add(diffVect);
+      }
     })
 
     this.vel.add(this.acc);

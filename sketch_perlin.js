@@ -7,9 +7,9 @@ let tweets;
 
 function setup() {
   createCanvas(displayWidth, displayHeight);
-  background(51);
+  background(218, 218, 202);
 
-  for (var i = 0; i < 50; i++) {
+  for (var i = 0; i < 10; i++) {
     w = new Walker(width/2, height/2);
     walker.push(w);
     xoff.push(0);
@@ -36,7 +36,8 @@ function draw() {
 
 function keyPressed() {
   if (key === "s") {
-    // walker.hide();
-    noLoop()
+    for (var i = 0; i < walker.length; i++) 
+      walker[i].hide();
+    // noLoop()
   }
 }

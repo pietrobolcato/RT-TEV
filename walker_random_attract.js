@@ -5,17 +5,15 @@ class Walker {
     this.vel = p5.Vector.random2D();
     this.vel.setMag(random(3));
 
-    this.mul = 1;
-    this.mulpi = random(1, 12);
-
     this.opacity = 50;
     this.opacityStroke = 50;
   }
 
   update(xoff, yoff, walker) {
-    let n = noise(xoff, yoff)
-    this.acc = p5.Vector.fromAngle(n * TWO_PI * this.mulpi);
-    this.acc.mult(this.mul);
+    this.acc = p5.Vector.random2D();
+
+    this.vel.add(this.acc);
+    this.vel.limit(1);
 
     // other walkers 
     walker.map(w => {

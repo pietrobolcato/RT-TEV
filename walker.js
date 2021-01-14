@@ -25,8 +25,8 @@ class Walker {
   }
 
   show() {
-    fill(63, this.opacity);
-    stroke(218, 218, 202, this.opacityStroke);
+    fill(36, 36, 42, this.opacity);
+    stroke(201, 201, 187, this.opacityStroke);
     ellipse(this.pos.x, this.pos.y, this.size);
   }
 

@@ -9,7 +9,7 @@ function setup() {
   createCanvas(displayWidth, displayHeight);
   background(218, 218, 202);
 
-  for (var i = 0; i < 10; i++) {
+  for (var i = 0; i < 1; i++) {
     w = new Walker(width/2, height/2);
     walker.push(w);
     xoff.push(0);
@@ -26,7 +26,6 @@ function setup() {
 function draw() {
   for (var i = 0; i < walker.length; i++) {
     walker[i].update(xoff[i], yoff[i], walker);
-    walker[i].checkLimits();
     walker[i].show();
 
     xoff[i] += inc[i];

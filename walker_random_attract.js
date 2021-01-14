@@ -7,13 +7,11 @@ class Walker {
 
     this.opacity = 50;
     this.opacityStroke = 50;
+    this.size = 32;
   }
 
-  update(xoff, yoff, walker) {
+  update() {
     this.acc = p5.Vector.random2D();
-
-    this.vel.add(this.acc);
-    this.vel.limit(1);
 
     // other walkers 
     walker.map(w => {
@@ -33,26 +31,16 @@ class Walker {
       // console.log(diffVect)
     })
 
-    
-
     this.vel.add(this.acc);
     this.vel.limit(1);
 
     this.pos.add(this.vel);
   }
 
-  checkLimits() {
-    if (this.pos.x < 0 || this.pos.y >= height) {
-      this.mul = -1;
-    } else if (this.pos.x >= width || this.pos.y < 0) {
-      this.mul = 1;
-    }
-  }
-
   show() {
     fill(36, 36, 42, this.opacity);
     stroke(201, 201, 187, this.opacityStroke);
-    ellipse(this.pos.x, this.pos.y, 32);
+    ellipse(this.pos.x, this.pos.y, this.size);
   }
 
   hide() {

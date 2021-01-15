@@ -20,8 +20,8 @@ class Walker {
   }
 
   show() {
-    fill(36, 36, 42, this.opacity);
-    stroke(201, 201, 187, this.opacityStroke);
+    fill(36, 36, 42, random(this.opacity / 10, this.opacity));
+    stroke(201, 201, 187, random(this.opacity / 10, this.opacityStroke));
     ellipse(this.pos.x, this.pos.y, this.size);
   }
 
@@ -35,6 +35,6 @@ class Walker {
       }
 
       console.log(this.opacity)
-    }, 500);
+    }, 5000);
   }
 }

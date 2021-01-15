@@ -41,7 +41,7 @@ async function draw() {
     if (fetch_started === false) {
       fetch_started = true;
 
-      let tweets_result = await t.getTweets("trump", 150, max_id)
+      let tweets_result = await t.getTweets("hate", 150, max_id)
       tweets = tweets_result.text.join(". ").split(/\W/);
       max_id = tweets_result.max_id;
 

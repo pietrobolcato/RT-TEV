@@ -4,7 +4,7 @@ function setup() {
   createCanvas(600, 400);
   background(218, 218, 202);
 
-  walker = new Walker(300, 200);
+  walker = new Walker(300 + random(-width/4, width/4), 200 + random(-height/4, height/4));
 }
 
 function draw() {

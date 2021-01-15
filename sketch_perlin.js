@@ -6,12 +6,15 @@ let inc = [];
 let t;
 let tweets;
 let tweets_index = 0;
-let max_id = -1;
+let next_max_id = -1;
 let fetch_started = false;
 
 let afinn;
 
 let randcount = 0;
+
+let query = "hate";
+let n_walkers = 10;
 
 function preload() {
   afinn = loadJSON('afinn.json');
@@ -19,10 +22,11 @@ function preload() {
 
 function setup() {
   createCanvas(displayWidth, displayHeight);
+  // background(255, 111, 89);
   background(218, 218, 202);
   // frameRate(10)
 
-  for (var i = 0; i < 5; i++) {
+  for (var i = 0; i < n_walkers; i++) {
     w = new Walker(width / 2, height / 2);
     walker.push(w);
     xoff.push(0);
@@ -41,14 +45,14 @@ async function draw() {
     if (fetch_started === false) {
       fetch_started = true;
 
-      let tweets_result = await t.getTweets("hate", 150, max_id)
+      let tweets_result = await t.getTweets(query, 150, next_max_id)
       tweets = tweets_result.text.join(". ").split(/\W/);
-      max_id = tweets_result.max_id;
+      next_max_id = tweets_result.next;
 
       fetch_started = false;
       randcount = 0;
       // console.log("nuovo")
-      console.log(tweets, max_id)
+      console.log(tweets, next_max_id)
     }
   }
 

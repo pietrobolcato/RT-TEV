@@ -7,6 +7,7 @@ class Tweets {
 
   getTweets(query, quantity, max_id = -1) {
     let tweet_texts = []
+    let min_id = -1;
 
     let params = {
       q: query + " lang:en",
@@ -15,7 +16,7 @@ class Tweets {
     };
 
     if (max_id !== -1)
-      params["since_id"] = max_id;
+      params["max_id"] = max_id;
 
     return new Promise((resolve, reject) => {
       this.cb.__call(
@@ -27,21 +28,21 @@ class Tweets {
           if (typeof statuses === "undefined") {
             let ret = {
               "text": [],
-              "max_id": -1
+              "next": -1
             }
 
             resolve(ret) 
           } else {
             for (var i = 0; i < statuses.length; i++) {
               var tweet = statuses[i];
-              if (!tweet.retweeted_status) {
-                tweet_texts.push(tweet.text);
-              }
+              tweet_texts.push(tweet.text);
+              if (tweet.id < min_id || min_id === -1)
+                min_id = tweet.id;
             }
 
             let ret = {
               "text": tweet_texts,
-              "max_id": reply.search_metadata.max_id
+              "next": reply.search_metadata.next_results.substr(8, 19)
             }
 
             resolve(ret)

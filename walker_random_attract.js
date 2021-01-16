@@ -49,12 +49,13 @@ class Walker {
     this.interval = setInterval(() => {
       this.opacity--;
 
-      if (this.opacity === 0) {
+      if (this.opacity === 6) { //stop
         clearInterval(this.interval);
         noLoop();
+        saveCanvas(query + "_" + n_walkers + "_" + time, "png")
       }
 
       console.log(this.opacity)
-    }, 500);
+    }, 1200);
   }
 }

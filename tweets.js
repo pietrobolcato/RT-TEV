@@ -1,11 +1,11 @@
 class Tweets {
-  constructor(consumerKey, consumerSecret, token, tokenSecret) {
+  constructor(consumerKey, consumerSecret, token, tokenSecret) { // initalize the API with the keys and tokens
     this.cb = new Codebird();
     this.cb.setConsumerKey(consumerKey, consumerSecret);
     this.cb.setToken(token, tokenSecret);
   }
 
-  getTweets(query, quantity, max_id = -1) {
+  getTweets(query, quantity, max_id = -1) { // get english tweets and returns a promise
     let tweet_texts = []
     let min_id = -1;
 

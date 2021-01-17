@@ -1,13 +1,13 @@
 class Walker {
   constructor(x, y) {
-    this.pos = createVector(x, y);
+    this.pos = createVector(x, y, sizemult);
 
     this.vel = p5.Vector.random2D();
     this.vel.setMag(random(3));
 
     this.opacity = 50;
     this.opacityStroke = 50;
-    this.size = 32;
+    this.size = 32 * sizemult;
   }
 
   update(action, walker) {
@@ -56,6 +56,6 @@ class Walker {
       }
 
       console.log(this.opacity)
-    }, 1200);
+    }, 1200 * sizemult);
   }
 }

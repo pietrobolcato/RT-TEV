@@ -13,22 +13,22 @@ let afinn;
 
 let randcount = 0;
 
-let query = "fast fashion";
-let n_walkers = 5;
-let time = 15 * 60 * 1000;
+let query = "nationalism";
+let n_walkers = 12;
+let time = 3 * 60 * 60 * 1000;
+
+let sizemult = 2;
 
 function preload() {
   afinn = loadJSON('afinn.json');
 }
 
 function setup() {
-  createCanvas(displayWidth, displayHeight);
-  background(255, 255, 0);
-  // background(218, 218, 202);
-  // frameRate(10)
+  createCanvas(displayWidth*sizemult, displayHeight*sizemult);
+  background(230, 230, 230);
 
   for (var i = 0; i < n_walkers; i++) {
-    w = new Walker(width / 2, height / 2);
+    w = new Walker(width / 2, height / 2, sizemult);
     walker.push(w);
     xoff.push(0);
     yoff.push(0);
@@ -46,7 +46,6 @@ function setup() {
 
 async function draw() {
   if (tweets_index === 0 || randcount > 1000) {
-    // noLoop()
 
     if (fetch_started === false) {
       fetch_started = true;
@@ -57,7 +56,7 @@ async function draw() {
 
       fetch_started = false;
       randcount = 0;
-      // console.log("nuovo")
+
       console.log(tweets, next_max_id)
     }
   }
@@ -105,7 +104,6 @@ function keyPressed() {
   if (key === "s") {
     for (var i = 0; i < walker.length; i++)
       walker[i].hide();
-    // noLoop()
   } else if (key === 'x') {
     console.log("stop")
     noLoop()

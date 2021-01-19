@@ -9,4 +9,4 @@ This processing scripts works by first inizialing an arbitrary number of particl
 ____
 ## License
 
-This work is released under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License.
+This work is released under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode).
